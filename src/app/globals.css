@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fffaf5;
+  --foreground: #292524;
+  --accent: #d97706;
+}
+
+.dark {
+  --background: #1c1917;
+  --foreground: #fafaf9;
+  --accent: #fbbf24;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+/* Modo oscuro: tarjetas y textos usados en toda la app */
+.dark .bg-white {
+  background-color: #292524;
+}
+
+.dark .bg-rose-50,
+.dark .bg-rose-50\/80 {
+  background-color: rgb(68 64 60 / 0.5);
+}
+
+.dark .bg-amber-50 {
+  background-color: rgb(69 26 3 / 0.4);
+}
+
+.dark .bg-stone-100 {
+  background-color: #44403c;
+}
+
+.dark .border-rose-50,
+.dark .border-rose-100,
+.dark .border-rose-200,
+.dark .border-rose-200\/80 {
+  border-color: #57534e;
+}
+
+.dark .border-stone-100,
+.dark .border-stone-200 {
+  border-color: #57534e;
+}
+
+.dark .text-stone-900 {
+  color: #fafaf9;
+}
+
+.dark .text-stone-800 {
+  color: #e7e5e4;
+}
+
+.dark .text-stone-600,
+.dark .text-stone-500 {
+  color: #a8a29e;
+}
+
+.dark .text-stone-400 {
+  color: #78716c;
+}
+
+.dark .text-rose-900 {
+  color: #fecdd3;
+}
+
+.dark .text-rose-800 {
+  color: #fda4af;
+}
+
+.dark .text-rose-700,
+.dark .text-rose-700\/80 {
+  color: #fb7185;
+}
+
+.dark .text-rose-600 {
+  color: #fb7185;
+}
+
+.dark .text-rose-500 {
+  color: #fbbf24;
+}
+
+.dark .text-amber-800,
+.dark .text-amber-900 {
+  color: #fcd34d;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #1c1917;
+  color: #fafaf9;
+  border-color: #57534e;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #78716c;
+}
+
+.dark nav.fixed {
+  background-color: rgb(28 25 23 / 0.95);
+  border-color: #57534e;
+}
+
+.dark .hover\:bg-rose-50:hover {
+  background-color: rgb(68 64 60 / 0.6);
+}
+
+.dark .hover\:border-rose-200:hover,
+.dark .hover\:border-rose-300:hover {
+  border-color: #a8a29e;
+}
+
+.dark .shadow-sm {
+  --tw-shadow-color: rgb(0 0 0 / 0.3);
+}

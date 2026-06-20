@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Unit {
+  KG
+  GRAM
+  LITER
+  ML
+  UNIT
+  TRAY
+  PACKAGE
+}
+
+model Material {
+  id                 String        @id @default(cuid())
+  name               String
+  unit               Unit
+  pricePerUnit       Float
+  packageSize        Float?
+  notes              String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  purchases          Purchase[]
+  recipeItems        RecipeItem[]
+}
+
+model Purchase {
+  id         String   @id @default(cuid())
+  materialId String
+  material   Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  quantity   Float
+  totalPaid  Float
+  date       DateTime @default(now())
+  notes      String?
+  createdAt  DateTime @default(now())
+
+  @@index([date])
+  @@index([materialId])
+}
+
+model Product {
+  id          String       @id @default(cuid())
+  name        String
+  salePrice   Float
+  notes       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  recipeItems RecipeItem[]
+  sales       Sale[]
+}
+
+model RecipeItem {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  materialId String
+  material   Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  quantity   Float
+
+  @@unique([productId, materialId])
+}
+
+model Sale {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  unitPrice Float
+  date      DateTime @default(now())
+  notes     String?
+  createdAt DateTime @default(now())
+
+  @@index([date])
+  @@index([productId])
+}
