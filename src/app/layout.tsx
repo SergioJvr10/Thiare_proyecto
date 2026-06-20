@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import "./globals.css";
@@ -47,10 +48,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${geist.variable} h-full`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
+      <head />
       <body className="min-h-full antialiased">
+        <Script id="theme-script" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
         <div className="mx-auto flex min-h-full max-w-lg flex-col px-4 pb-24 pt-6 md:max-w-4xl md:pb-8">
           <AppHeader />
           <div className="hidden md:block">
